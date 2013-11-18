@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true
   # validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many :password_resets
+
   def password=(pass)
     self.password_digest = BCrypt::Password.create(pass)
   end

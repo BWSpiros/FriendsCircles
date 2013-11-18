@@ -1,6 +1,11 @@
 Friendcircle::Application.routes.draw do
 
-  resources :users
+  resources :password_resets, only: [:new, :create]
+  resources :users do
+    member do
+      get 'new_password'
+    end
+  end
   resource :session, only: [:new, :create, :destroy]
 
   root to: "users#index"
