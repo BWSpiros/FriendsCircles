@@ -1,0 +1,24 @@
+<h1>User: <%= @user.email %></h1>
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+
+  <% @user.attributes.each do |attribute, value| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= value %></td>
+    </tr>
+  <% end%>
+</table>
+<p>
+<%= link_to "back to users index", users_url %>
+</p>
+<p>
+  <%= link_to "edit user", edit_user_url(@user) %>
+</p>
+<p>
+  <%= button_to "DESTROY ME!", user_url(@user), method: :delete %>
+</p>

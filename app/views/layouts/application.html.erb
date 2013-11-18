@@ -8,6 +8,21 @@
 </head>
 <body>
 
+<ul>
+  <% flash.each do |key, message| %>
+    <% if message.is_a?(String) %>
+      <li><%= message %></li>
+    <% else %>
+      <li>Errors</li>
+      <ul>
+        <% message.each do |msg|%>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
+</ul>
+
 <%= yield %>
 
 </body>
