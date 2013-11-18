@@ -14,4 +14,6 @@ class Post < ActiveRecord::Base
 
   has_many :links, inverse_of: :post
 
+  has_many :friend_circles, through: :post_shares, source: :friend_circle
+
 end

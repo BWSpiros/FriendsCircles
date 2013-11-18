@@ -1,0 +1,15 @@
+<h1>Post: <%= @post.id %></h1>
+
+<table>
+  <tr>
+    <th>Attribute</th>
+    <th>Value</th>
+  </tr>
+
+  <% @post.attributes.each do |attribute, value| %>
+    <tr>
+      <td><%= attribute %></td>
+      <td><%= value %></td>
+    </tr>
+  <% end%>
+</table>

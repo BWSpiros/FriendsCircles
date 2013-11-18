@@ -14,5 +14,6 @@ class FriendCircle < ActiveRecord::Base
   )
 
   has_many :post_shares, inverse_of: :friend_circle
+  has_many :posts, through: :post_shares, source: :post
 
 end

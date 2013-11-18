@@ -1,0 +1,34 @@
+<form action="<%= url %>" method="post">
+
+  <input  type="hidden"
+          name="_method"
+          value="<%= method || "post" %>">
+
+  <input  type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+
+<p>
+  <label>Body:
+    <input name="post[body]" type="text" value="<%= @post.body %>">
+  </label>
+</p>
+
+<p>
+  <label>Friend Circles:
+    <ul>
+      <% @user.friend_circles.each_with_index do |friend_circle, idx| %>
+        <li>
+          <label>
+            <% checked = @post.post_shares.find_by_friend_circle_id(friend_circle.id) ? "checked" : "" %>
+            <input type="checkbox" name="friend_circles[<%= friend_circle.id %>][friend_circle_id]" value="<%= friend_circle.id %>" id="checkbox_<%= friend_circle.id %>"<%= checked.html_safe %>>
+          <%= friend_circle.name %></label>
+        </li>
+      <% end %>
+    </ul>
+  </label>
+</p>
+
+<p>
+  <input type="submit">
+</form>
