@@ -27,3 +27,18 @@ heroes.save!
 
 FriendCircleMembership.create!(user_id: 3, friend_circle_id: 1)
 FriendCircleMembership.create!(user_id: 4, friend_circle_id: 1)
+
+batman.posts.build(body: "I'm BATMAN!!!!")
+batman.save!
+
+superman.posts.build(body: "I'm superman")
+superman.save!
+
+
+heroes.post_shares.build(post_id: 2)
+heroes.save!
+
+bat_post = Post.first
+bat_post.links.build(text: "marvel.com")
+bat_post.links.build(text: "dccomics.com")
+bat_post.save!

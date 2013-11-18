@@ -12,4 +12,7 @@ class FriendCircle < ActiveRecord::Base
     primary_key: :id,
     inverse_of: :owned_friend_circles
   )
+
+  has_many :post_shares, inverse_of: :friend_circle
+
 end
