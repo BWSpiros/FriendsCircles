@@ -8,7 +8,15 @@ class User < ActiveRecord::Base
   # validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :password_resets
+  has_many :friend_circle_memberships
+  has_many(
+    :owned_friend_circles,
+    class_name: "FriendCircle",
+    foreign_key: :owner_id,
+    primary_key: :id
+  )
 
+  has_many :friend_circles, through: :friend_circle_memberships, source: :friend_circle
   def password=(pass)
     self.password_digest = BCrypt::Password.create(pass)
   end

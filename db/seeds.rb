@@ -13,3 +13,17 @@ david.save!
 brian = User.new(email: "brian@brian.com")
 brian.password = "password"
 brian.save!
+
+batman = User.new(email: "brucewayne@wayneenterprises.com")
+batman.password = "batman"
+batman.save!
+
+superman = User.new(email: "clarkkent@dailyplanet.com")
+superman.password = "superman"
+superman.save!
+
+heroes = FriendCircle.new(owner_id: 4, name: "Justice League")
+heroes.save!
+
+FriendCircleMembership.create!(user_id: 3, friend_circle_id: 1)
+FriendCircleMembership.create!(user_id: 4, friend_circle_id: 1)

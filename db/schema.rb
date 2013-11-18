@@ -11,7 +11,27 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131118161337) do
+ActiveRecord::Schema.define(:version => 20131118185448) do
+
+  create_table "friend_circle_memberships", :force => true do |t|
+    t.integer  "user_id",          :null => false
+    t.integer  "friend_circle_id", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  add_index "friend_circle_memberships", ["friend_circle_id"], :name => "index_friend_circle_memberships_on_friend_circle_id"
+  add_index "friend_circle_memberships", ["user_id", "friend_circle_id"], :name => "index_friend_circle_memberships_on_user_id_and_friend_circle_id", :unique => true
+  add_index "friend_circle_memberships", ["user_id"], :name => "index_friend_circle_memberships_on_user_id"
+
+  create_table "friend_circles", :force => true do |t|
+    t.integer  "owner_id"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "friend_circles", ["owner_id"], :name => "index_friend_circles_on_owner_id"
 
   create_table "password_resets", :force => true do |t|
     t.integer  "user_id",     :null => false
