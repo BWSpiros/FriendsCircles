@@ -8,12 +8,13 @@ class User < ActiveRecord::Base
   # validates :password, length: { minimum: 6, allow_nil: true }
 
   has_many :password_resets
-  has_many :friend_circle_memberships
+  has_many :friend_circle_memberships, inverse_of: :user
   has_many(
     :owned_friend_circles,
     class_name: "FriendCircle",
     foreign_key: :owner_id,
-    primary_key: :id
+    primary_key: :id,
+    inverse_of: :owner
   )
 
   has_many :friend_circles, through: :friend_circle_memberships, source: :friend_circle

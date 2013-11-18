@@ -1,0 +1,34 @@
+<form action="<%= url %>" method="post">
+
+  <input  type="hidden"
+          name="_method"
+          value="<%= method || "post" %>">
+
+  <input  type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+
+<p>
+  <label>Name:
+    <input name="friend_circle[name]" type="text" value="<%= @friend_circle.name %>">
+  </label>
+</p>
+
+<p>
+  <label>Members:
+    <ul>
+      <% @users.each_with_index do |user, idx| %>
+        <li>
+          <label>
+            <% checked = @friend_circle.members.include?(user) ? "checked" : "" %>
+            <input type="checkbox" name="members[<%= user.id %>][user_id]" value="<%= user.id %>" id="checkbox_<%= user.id %>"<%= checked.html_safe %>>
+          <%= user.email %></label>
+        </li>
+      <% end %>
+    </ul>
+  </label>
+</p>
+
+<p>
+  <input type="submit">
+</form>

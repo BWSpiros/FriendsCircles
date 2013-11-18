@@ -1,6 +1,7 @@
 Friendcircle::Application.routes.draw do
 
   resources :password_resets, only: [:new, :create]
+  resources :friend_circles
   resources :users do
     member do
       get 'new_password'
